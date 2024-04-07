@@ -34,7 +34,11 @@ public class RNReactNativeWalleModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void getChannel(Promise promise) {
-        String channel = WalleChannelReader.getChannel(reactContext);
+        String channel = null;
+        try {
+            channel = WalleChannelReader.getChannel(reactContext);
+        } catch (Exception ignored) {
+        }
         promise.resolve(channel);
     }
 
@@ -45,14 +49,18 @@ public class RNReactNativeWalleModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void getExtraInfo(Promise promise) {
-        ChannelInfo channelInfo = WalleChannelReader.getChannelInfo(reactContext);
-        if (channelInfo != null) {
-            Map extraInfo = channelInfo.getExtraInfo();
-            WritableMap writableMap = Arguments.makeNativeMap(extraInfo);
-            promise.resolve(writableMap);
-            return;
+        try {
+            ChannelInfo channelInfo = WalleChannelReader.getChannelInfo(reactContext);
+            if (channelInfo != null) {
+                Map extraInfo = channelInfo.getExtraInfo();
+                WritableMap writableMap = Arguments.makeNativeMap(extraInfo);
+                promise.resolve(writableMap);
+            } else {
+                promise.resolve(null);
+            }
+        } catch (Exception ignored) {
+            promise.resolve(null);
         }
-        promise.resolve(null);
     }
 
     /**
@@ -62,6 +70,11 @@ public class RNReactNativeWalleModule extends ReactContextBaseJavaModule {
      * @return
      */
     public static String getWalleChannel(Context context) {
-        return WalleChannelReader.getChannel(context);
+        String channel = null;
+        try {
+            channel = WalleChannelReader.getChannel(context);
+        } catch (Exception ignored) {
+        }
+        return channel;
     }
 }
