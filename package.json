@@ -3,7 +3,7 @@
   "name": "react-native-walle",
   "version": "1.0.0",
   "description": "react-native library for walle",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

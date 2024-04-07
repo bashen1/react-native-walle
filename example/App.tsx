@@ -17,8 +17,8 @@ const App = () => {
 
   return useMemo(() => (
     <View style={styles.container}>
-      <Text>channel: {channel}</Text>
-      <Text>extraInfo: {JSON.stringify(extraInfo)}</Text>
+      <Text>channel: {channel ?? ''}</Text>
+      <Text>extraInfo: {JSON.stringify(extraInfo ?? {})}</Text>
     </View>
   ), [channel, extraInfo]);
 }
