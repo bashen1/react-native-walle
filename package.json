@@ -1,7 +1,7 @@
 
 {
   "name": "react-native-walle",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "react-native library for walle",
   "main": "index.ts",
   "scripts": {
